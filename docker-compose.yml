@@ -1,0 +1,46 @@
+services:
+  app:
+    build: .
+    container_name: telegramvault_app
+    ports:
+      - "7500:8000"
+      - "7501:5000"
+      - "7502:8080"
+    volumes:
+      - ./backend:/app/backend
+      - ./client:/app/client
+      - ./media:/app/media
+      - ./sessions:/app/sessions
+      # Temporarily disabled due to filesystem corruption
+      # - ./logs:/app/logs
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/telegramvault
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
+      - SECRET_KEY=${SECRET_KEY:-supersecretkey123456}
+      - VITE_BACKEND_URL=${VITE_BACKEND_URL:-http://127.0.0.1:8000}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: telegramvault_db
+    ports:
+      - "7503:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=telegramvault
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
