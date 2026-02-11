@@ -7,7 +7,11 @@
   <sub>FastAPI + Telethon + React (Vite) + Docker</sub>
 </p>
 
+### Login
+![Login](docs/assets/login.png)
 
+### Dashboard
+![Dashboard](docs/assets/dashboard.png)
 
 <p align="center">
   <!-- Badges -->
