@@ -8,10 +8,10 @@
 </p>
 
 ### Login
-![Login](docs/assets/login.png)
+![Login](docs/LOGIN.png)
 
 ### Dashboard
-![Dashboard](docs/assets/dashboard.png)
+![Dashboard](docs/DASHBOARD.png)
 
 <p align="center">
   <!-- Badges -->
