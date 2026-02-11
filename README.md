@@ -41,18 +41,34 @@ El objetivo es tener un **“vault” local** que te permita:
 
 ## ✨ Características
 
-- 🔐 **Sesión Telegram** con Telethon
-- ⚡ **API** con FastAPI
-- 🧠 Configuración centralizada (ConfigManager)
-- 🧾 Logging estructurado (fácil de depurar)
-- 🖥️ Frontend moderno (React + Vite)
-- 🐳 Deploy simple con Docker Compose
-- 📦 Organización de medios descargados
-- 🧩 Estructura modular para agregar scrapers y módulos OSINT
+### Cuentas y sesiones
+- ✅ **Multi-cuentas**: administra varias cuentas de Telegram y asigna una cuenta por grupo/tarea.
+- ✅ Conexión/validación de sesión (código + 2FA si aplica).
+- ✅ Recuperación/gestión de sesión para evitar caídas por estados inconsistentes.
 
+### Grupos, canales y chats
+- ✅ Listado de diálogos (chats/canales/grupos) y gestión de “managed dialogs”.
+- ✅ **Auto-join** (unirse a canales/grupos desde la UI/API).
+- ✅ **Asignación de cuenta a grupo** y control por grupo.
+
+### Scraping e ingesta
+- ✅ **Scraping de miembros / participantes** por grupo (manual y programado).
+- ✅ Guardado de participantes y consulta de miembros por grupo.
+- ✅ **Backfill**: descarga histórica de mensajes (y posibilidad de detenerlo).
+- ✅ Descarga de medios (con opción de **deduplicación**).
+
+### Monitoreo
+- ✅ **Monitoreo de actividad** por chat/grupo: iniciar/detener tracking.
+- ✅ Estado de monitoreo y página de monitoring.
+
+### Usuarios (OSINT interno)
+- ✅ Perfil de usuario + foto de perfil / fotos / stories.
+- ✅ Enriquecimiento (incluye métricas/estadísticas) y “bulk enrich”.
+- ✅ Acciones tipo watchlist/favoritos (según endpoints existentes).
+- 
 ---
 
-## 🧱 Arquitectura (alto nivel)
+## 🧱 Arquitectura
 
 ```
 Telegram (API)
